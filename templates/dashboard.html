@@ -1,0 +1,9 @@
+{% extends 'default/master.html' %} {% block head %}
+<script src="/static/js/dashboard.js"></script>
+{% endblock %} {% block content %}
+<div class="text-area">
+  <p id="ldr">{{ data.ldr }}</p>
+  <p id="tmp">{{ data.tmp }}</p>
+  <p id="dht">{{ data.dht }}</p>
+</div>
+{% endblock %}
