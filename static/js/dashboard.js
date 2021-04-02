@@ -12,7 +12,7 @@ $(document).ready(function () {
         $("#ldr").text(data.data.ldr);
         $("#tmp").text(data.data.tmp);
         $("#dht").text(data.data.dht);
-        $("#ds20b18").text(data.data.ds20b18);
+        $("#ds18b20").text(data.data.ds18b20);
 
       },
     });
