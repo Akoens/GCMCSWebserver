@@ -159,3 +159,4 @@ fabric.properties
 __pycache__/
 
 database/SQLite.db
+database/db.json

@@ -1,1 +1,1 @@
-{"tmp": "[TMP] Temperature: 28.61*C / 301.76*K / 83.50*F | Raw: 161", "ldr": "[LDR] Light: 63 Lux | raw: 454", "dht": "[DHT] Humidity: 51.60% | Temperature: 20.40*C / 68.72*K / 293.55*F | Heat index: 19.84*C / 67.72*F"}
+{"tmp": "[TMP] Temperature: 25.20*C / 298.35*K / 77.35*F | Raw: 154", "ldr": "[LDR] Light: 32 Lux | raw: 342", "dht": "[DHT] Humidity: 52.10% | Temperature: 20.00*C / 68.00*K / 293.15*F | Heat index: 19.42*C / 66.95*F", "ds20b18": "[DS20B18] Temperature: 19*C"}
