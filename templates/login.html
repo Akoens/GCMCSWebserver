@@ -8,15 +8,17 @@ content %}
 
 <div class="text-area">
   <h3>This is the {{title}} page.</h3>
+
+    <div id="login">
+        <form id="userLogin">
+            <label for="userName">Username</label>
+            <input type="text" id="userName" name="userName" /><br /><br />
+            <label for="pwd">Password:</label>
+            <input type="password" id="pwd" name="pwd" minlength="8" /><br /><br />
+        </form>
+        <button type="submit" form="userLogin" value="Submit">Log in</button>
+    </div>
+    <div id="loginProblems">Something is wrong</div>
 </div>
-<div id="login">
-  <form id="userLogin">
-    <label for="userName">Username</label>
-    <input type="text" id="userName" name="userName" /><br /><br />
-    <label for="pwd">Password:</label>
-    <input type="password" id="pwd" name="pwd" minlength="8" /><br /><br />
-  </form>
-  <button type="submit" form="userLogin" value="Submit">Log in</button>
-</div>
-<div id="loginProblems">Something is wrong</div>
+
 {% endblock %}
