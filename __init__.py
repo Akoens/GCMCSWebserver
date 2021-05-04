@@ -1,14 +1,33 @@
 from flask import Flask
 from config import get_config
 
+# Path handler imports
 import handlers.index as index
 import handlers.dashboard as dashboard
 import handlers.api as api
 from handlers import settings, login
 
+# Database imports
+from databasemanager.sqlitemanager import SqliteManager
+from models.data import Data
+from models.microcontroller import Microcontroller
+from models.user import User
+
 if __name__ == '__main__':
     # Import config.
     cfg = get_config()
+
+    manager = SqliteManager()
+    # manager.add_user(User("bob", "bob@harris.com", "pASS"))
+    # user = manager.select_user_by_email("bob@harris.com")
+    # manager.add_microcontroller(Microcontroller("bob's microcontroller", user.id))
+    # microcontrollers = manager.select_microcontrollers_by_user_id(user.id)
+    # manager.add_data(Data(20.0, 590, 3.0, 50.0, 18.0, microcontrollers[0].id, microcontrollers[0].user_id))
+    # data = manager.select_data_by_microcontroller_id(microcontrollers[0].id)
+
+    # print(user)
+    # print(microcontrollers)
+    # print(data, end="\n\n")
 
     handlers = [index, dashboard, api, settings, login]
     app = Flask(__name__)

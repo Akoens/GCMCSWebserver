@@ -156,7 +156,5 @@ fabric.properties
 # Sublime Text 3
 .sublime
 
-__pycache__/
-
-database/SQLite.db
-database/db.json
+# Database files
+database/
