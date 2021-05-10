@@ -146,7 +146,18 @@ class SqliteManager:
         except sql.IntegrityError as e:
             print(e)
 
-    def select_data_by_microcontroller_id(self, microcontroller_id: int) -> List[Data]:
+    def select_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 1) -> List[Data]:
+        try:
+            with self.conn:
+                self.c.execute("""SELECT * FROM Data WHERE Microcontroller_id = :microcontroller_id ORDER BY timestamp DESC
+                LIMIT :amount """,
+                               {"microcontroller_id": microcontroller_id, "amount": amount})
+                records = self.c.fetchall()
+                return [Data(r[1], r[2], r[3], r[4], r[5], r[7], r[8], r[0], r[6]) for r in records]
+        except sql.IntegrityError as e:
+            print(e)
+
+    def select_all_data_by_microcontroller_id(self, microcontroller_id: int) -> List[Data]:
         try:
             with self.conn:
                 self.c.execute("""SELECT * FROM Data WHERE Microcontroller_id = :microcontroller_id""",

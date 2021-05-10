@@ -18,4 +18,19 @@ class Data:
         self.microcontroller_user_id = microcontroller_user_id
 
     def __repr__(self) -> str:
-        return f"""Data<Id={self.id}, Temperature={self.temperature}, Light={self.light}, Humidity={self.humidity}, Heat index={self.heat_index}, Ground temperature={self.ground_temperature}, Timestamp={self.timestamp} Microcontroller id={self.microcontroller_id}, Microcontroller User id={self.microcontroller_user_id}> """
+        return f"""Data<Id={self.id}, Temperature={self.temperature}, Light={self.light}, Humidity={self.humidity},
+         Heat index={self.heat_index}, Ground temperature={self.ground_temperature}, Timestamp={self.timestamp} 
+         Microcontroller id={self.microcontroller_id}, Microcontroller User id={self.microcontroller_user_id}>"""
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'temperature': self.temperature,
+            'light': self.light,
+            'humidity': self.humidity,
+            'heat_index': self.heat_index,
+            'ground_temperature': self.ground_temperature,
+            'timestamp': self.timestamp,
+            'microcontroller_id': self.microcontroller_id,
+            'microcontroller_user_id': self.microcontroller_user_id
+        }

@@ -2,9 +2,15 @@
 <script src="/static/js/dashboard.js"></script>
 {% endblock %} {% block content %}
 <div class="text-area">
-  <p id="ldr">{{ data.ldr }}</p>
-  <p id="tmp">{{ data.tmp }}</p>
-  <p id="dht">{{ data.dht }}</p>
-  <p id="ds18b20">{{ data.ds18b20 }}</p>
+  <p id="id">{{ data.id }}</p>
+  <p id="temperature">{{ data.temperature }}</p>
+  <p id="light">{{ data.light }}</p>
+  <p id="humidity">{{ data.humidity }}</p>
+  <p id="heat_index">{{ data.heat_index }}</p>
+  <p id="ground_temperature">{{ data.ground_temperature }}</p>
+  <p id="timestamp">{{ data.timestamp }}</p>
+  <p id="microcontroller_id">{{ data.microcontroller_id }}</p>
+  <p id="microcontroller_user_id">{{ data.microcontroller_user_id }}</p>
+
 </div>
 {% endblock %}
