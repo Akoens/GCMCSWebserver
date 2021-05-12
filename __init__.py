@@ -2,10 +2,7 @@ from flask import Flask
 from config import get_config
 
 # Path handler imports
-import handlers.index as index
-import handlers.dashboard as dashboard
-import handlers.api as api
-from handlers import settings, login
+from handlers import index,dashboard, api, settings, login
 
 # Database imports
 from databasemanager.sqlitemanager import SqliteManager
