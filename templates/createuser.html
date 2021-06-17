@@ -1,0 +1,40 @@
+{% extends 'default/master.html' %} {% block head %}<link href="/static/css/login.css" rel="stylesheet" type="text/css" />
+{% endblock %} {% block
+content %}
+
+<div class="login">
+<div class="container">
+<div class="form-input-material">
+<h2>New user</h2>
+    {% from "shared/_formhelpers.html" import render_field %}
+    <form method=post action="/createuser" class="login-form">
+        <dl>
+            <div class="form-input-material">
+            {{ render_field(form.name) }}
+            </div>
+            <div class="form-input-material">
+            {{ render_field(form.email) }}
+            </div>
+
+            {% if error %}
+            <p class=errors><strong></strong> {{ error }}
+            {% endif %}
+            <div class="form-input-material">
+            {{ render_field(form.password) }}
+            </div>
+            <div class="form-input-material">
+            {{ render_field(form.password2) }}
+            </div>
+        </dl>
+        <p><input type=submit value=Register>
+    </form>
+</div>
+
+    <div class="help-text">
+        <p>Have an account? <a href="/login">Log in</a></p>
+        <p><a href="">Terms of service</a></p>
+    </div>
+    </div>
+
+</div>
+{% endblock %}

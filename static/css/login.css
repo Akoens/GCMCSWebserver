@@ -1,0 +1,113 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #fdfdfd;
+}
+
+.btn {
+  padding: 8px 20px;
+  border-radius: 0;
+  overflow: hidden;
+}
+.btn::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        var(--fg-primary),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: 0.6s;
+}
+
+.btn:hover {
+    background: transparent;
+    box-shadow: 0 0 20px 10px hsla(204, 70%, 53%, 0.5);
+}
+.btn:hover::before {
+  transform: translateX(100%);
+}
+
+.form-input-material {
+  --input-default-border-color: white;
+  --input-border-bottom-color: white;
+}
+
+.form-input-material input {
+    color: #000000;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 40px;
+  color: white;
+  background: rgb(40, 40, 40);
+  border-radius: 10px;
+  box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109),
+    0 1px 1px rgba(128, 128, 128, 0.155),
+    0 2.1px 2.1px rgba(128, 128, 128, 0.195),
+    0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+    0 12px 12px rgba(128, 128, 128, 0.35);
+
+}
+
+.login-form h1 {
+    margin: 0 0 89px 0;
+    color: deeppink;
+}
+
+.login-form .form-input-material {
+    margin: 12px 0;
+}
+
+.login-form .btn {
+    width: 100%;
+    margin: 18px 0 9px 0;
+}
+
+input[type=submit] {
+  padding: 16px 42px;
+  box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+  line-height: 1.25;
+  background: #658047;
+  text-decoration: none;
+  border-radius: 7px;
+  color: white;
+  font-size: 16px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  position: relative;
+  transition: background-color .6s ease;
+  overflow: hidden;
+}
+
+  input[type=submit]:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform-style: flat;
+    transform: translate3d(-50%,-50%,0);
+    background: white;
+    border-radius: 100%;
+    transition: width .3s ease, height .3s ease;
+  }
+  input[type=submit]:focus,
+  input[type=submit]:hover {
+      background: #689f38;
+  }
+
+
+

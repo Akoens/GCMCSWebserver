@@ -3,11 +3,21 @@
 <link href="/static/css/dashboard.css" rel="stylesheet" type="text/css" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %} {% block content %}
+
+<!--{% if current_user.is_authenticated %}-->
+<!--<p>Hi {{ current_user.name }}!</p>-->
+<!--<p>{{ current_user.id }}</p>-->
+<!--<p>{{ current_user.email }}</p>-->
+<!--<p>{{ current_user.hashed_password }}</p>-->
+<!--{% endif %}-->
+
 <div class="data card">
   <div class="container">
     <h1>Live Data</h1>
     <div class="live-data"></div>
   </div>
+
+
 
   <div class="container">
     <h1>Humidity</h1>

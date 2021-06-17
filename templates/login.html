@@ -1,24 +1,39 @@
-{% extends 'default/master.html' %} {% block head %} {% endblock %} {% block
-content %}
-<!-- Just Write the code down here 
-            |
-            |
-            V 
--->
 
-<div class="text-area">
-  <h3>This is the {{title}} page.</h3>
+{% extends 'default/master.html' %} {% block head %} <link href="/static/css/login.css" rel="stylesheet" type="text/css" />
+{% endblock %} {% block content %}
 
-    <div id="login">
-        <form id="userLogin">
-            <label for="userName">Username</label>
-            <input type="text" id="userName" name="userName" /><br /><br />
-            <label for="pwd">Password:</label>
-            <input type="password" id="pwd" name="pwd" minlength="8" /><br /><br />
-        </form>
-        <button type="submit" form="userLogin" value="Submit">Log in</button>
+
+{% from "shared/_formhelpers.html" import render_field %}
+    <div class="login">
+
+
+
+  <div class="form-input-material">
+<h1>Login</h1>
+    <form method=post action="/login" class="login-form">
+        <dl>
+            <div class="form-input-material">
+            {{ render_field(form.email)}}
+            </div>
+            <div class="form-input-material">
+            {{ render_field(form.password)}}
+            </div>
+             {% if error %}
+            <p class=errors><strong> {{ error }}</strong></p>
+            {% endif %}
+
+        </dl>
+
+        <input type=submit value=Login>
+
+    </form>
+
+    <div class="help-text">
+        <p>Don't have an account? <a href="/createuser">Sign up</a></p>
+        <p><a href="">Forget your password?</a></p>
     </div>
-    <div id="loginProblems">Something is wrong</div>
 </div>
+    </div>
+
 
 {% endblock %}

@@ -11,6 +11,7 @@ class SqliteManager:
     def __init__(self, database_name: str = "GCMCS.db", database_location: str = "database/") -> None:
         self.database_name = database_name
         self.database_location = database_location
+        # TODO make it so it will create database file.
         self.conn = sql.connect(self.database_location + self.database_name)
         self.c = self.conn.cursor()
         self.__init_database()
@@ -280,6 +281,18 @@ class SqliteManager:
 
         except sql.IntegrityError as e:
             print(e)
+
+    # Boolean operators.
+    def user_exists_by_email(self, user_email: str) -> bool:
+        try:
+            with self.conn:
+                self.c.execute("""SELECT * FROM User WHERE email = :user_email""",
+                               {"user_email": user_email})
+                r = self.c.fetchone()
+                return not (r is None)
+        except sql.IntegrityError as e:
+            print(e)
+            return False
 
     # Close the database connection
     def close(self):
