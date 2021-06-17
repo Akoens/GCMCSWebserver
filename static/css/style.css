@@ -8,6 +8,7 @@
   --fg-secondary: #689f38;
   --bg-primary: #282828;
   --bg-secondary: #212121;
+  --bg-tertiary: #424242;
   --transition-fast: 200ms;
   --transition-slow: 600ms;
 }
@@ -38,28 +39,37 @@ footer {
   padding: 0rem;
 }
 
-.main-image {
-  background-image: url("/static/img/pexels-dominika-roseclay-1141792.jpg");
-  height: 25rem;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-height: 100vh;
   position: relative;
-
-  filter: blur(4px);
-  -webkit-filter: blur(4px);
 }
 
-.container {
-  color: var(--text-secondary);
-  transform: translate(0rem, -20rem);
+footer {
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  height: 5rem;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border-top: 4px dotted var(--gray-700);
 }
 
-.text-area,
-.container {
+.text-area {
   text-align: center;
   width: 75%;
   margin: 0 auto;
+}
+
+.blurred {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 }
 
 .navbar {
@@ -145,6 +155,17 @@ footer {
 
 .navbar:hover .logo i {
   transform: rotate(-180deg);
+}
+
+.card {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Small screens */

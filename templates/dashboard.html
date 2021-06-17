@@ -1,16 +1,61 @@
 {% extends 'default/master.html' %} {% block head %}
 <script src="/static/js/dashboard.js"></script>
+<link href="/static/css/dashboard.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %} {% block content %}
-<div class="text-area">
-  <p id="id">{{ data.id }}</p>
-  <p id="temperature">{{ data.temperature }}</p>
-  <p id="light">{{ data.light }}</p>
-  <p id="humidity">{{ data.humidity }}</p>
-  <p id="heat_index">{{ data.heat_index }}</p>
-  <p id="ground_temperature">{{ data.ground_temperature }}</p>
-  <p id="timestamp">{{ data.timestamp }}</p>
-  <p id="microcontroller_id">{{ data.microcontroller_id }}</p>
-  <p id="microcontroller_user_id">{{ data.microcontroller_user_id }}</p>
+<div class="data card">
+  <div class="container">
+    <h1>Live Data</h1>
+    <div class="live-data"></div>
+  </div>
 
+  <div class="container">
+    <h1>Humidity</h1>
+    <div class="overview-total">
+      <h2 class="overview-num" id="humidity"></h2>
+      <canvas id="humidity_dougnut"></canvas>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Ground Moisture</h1>
+    <div class="overview-total">
+      <h2 class="overview-num" id="moisture"></h2>
+      <canvas id="moisture_dougnut"></canvas>
+    </div>
+  </div>
 </div>
+
+<div class="data card">
+  <h1>Temperature</h1>
+  <canvas id="temperature_line"></canvas>
+</div>
+
+<div class="data card">
+  <h1>Light</h1>
+  <canvas id="light_line"></canvas>
+</div>
+
+<div class="data card">
+  <h1>Humidity</h1>
+  <canvas id="humidity_line"></canvas>
+</div>
+
+<div class="data card">
+  <h1>Heat Index</h1>
+  <canvas id="heat_index_line"></canvas>
+</div>
+
+<div class="data card">
+  <h1>Ground Temperature</h1>
+  <canvas id="ground_temperature_line"></canvas>
+</div>
+
+<div class="data card">
+  <h1>Ground Moisture</h1>
+  <canvas id="ground_moisture_line"></canvas>
+</div>
+
+<div class="scroll-up"><i class="material-icons">arrow_upward</i></div>
+
 {% endblock %}

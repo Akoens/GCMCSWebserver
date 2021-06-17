@@ -1,5 +1,5 @@
 import sqlite3 as sql
-from typing import List
+from typing import List, Dict
 
 from models.data import Data
 from models.microcontroller import Microcontroller
@@ -42,6 +42,7 @@ class SqliteManager:
                     "humidity" REAL, 
                     "heat_index" REAL, 
                     "ground_temperature"	REAL,
+                    "ground_moisture"	REAL,
                     "timestamp"	TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     "Microcontroller_id" INTEGER NOT NULL, 
                     "Microcontroller_User_id" INTEGER NOT NULL, 
@@ -78,10 +79,10 @@ class SqliteManager:
             with self.conn:
                 self.c.execute("""
                     INSERT INTO Data (
-                        id, temperature, light, humidity, heat_index, ground_temperature,
+                        id, temperature, light, humidity, heat_index, ground_temperature, ground_moisture,
                         Microcontroller_id, Microcontroller_User_id)
                     VALUES (
-                        :id, :temperature, :light, :humidity, :heat_index,:ground_temperature, 
+                        :id, :temperature, :light, :humidity, :heat_index,:ground_temperature, :ground_moisture,
                         :microcontroller_id, :microcontroller_user_id)""", {
                     "id": data.id,
                     "temperature": data.temperature,
@@ -89,6 +90,7 @@ class SqliteManager:
                     "humidity": data.humidity,
                     "heat_index": data.heat_index,
                     "ground_temperature": data.ground_temperature,
+                    "ground_moisture": data.ground_moisture,
                     "microcontroller_id": data.microcontroller_id,
                     "microcontroller_user_id": data.microcontroller_user_id
                 })
@@ -142,7 +144,7 @@ class SqliteManager:
             with self.conn:
                 self.c.execute("""SELECT * FROM Data WHERE id = :data_id""", {"data_id": data_id})
                 r = self.c.fetchone()
-                return Data(r[1], r[2], r[3], r[4], r[5], r[7], r[8], r[0], r[6])
+                return Data(r[1], r[2], r[3], r[4], r[5], r[6], r[8], r[9], r[0], r[7])
         except sql.IntegrityError as e:
             print(e)
 
@@ -153,7 +155,86 @@ class SqliteManager:
                 LIMIT :amount """,
                                {"microcontroller_id": microcontroller_id, "amount": amount})
                 records = self.c.fetchall()
-                return [Data(r[1], r[2], r[3], r[4], r[5], r[7], r[8], r[0], r[6]) for r in records]
+                return [Data(r[1], r[2], r[3], r[4], r[5], r[6], r[8], r[9], r[0], r[7]) for r in records]
+        except sql.IntegrityError as e:
+            print(e)
+
+    # Data for graphs
+    def select_temperature_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 10) -> {List[float], List[str]}:
+        try:
+            with self.conn:
+                self.c.execute("""SELECT temperature, timestamp FROM Data WHERE Microcontroller_id = :microcontroller_id ORDER BY timestamp DESC
+                LIMIT :amount """,
+                               {"microcontroller_id": microcontroller_id, "amount": amount})
+                records = self.c.fetchall()
+                values = [r[0] for r in records]
+                labels = [r[1].split(" ")[1] for r in records]
+                return {"values": values, "labels": labels}
+        except sql.IntegrityError as e:
+            print(e)
+
+    def select_light_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 10) -> {List[float], List[str]}:
+        try:
+            with self.conn:
+                self.c.execute("""SELECT light, timestamp FROM Data WHERE Microcontroller_id = :microcontroller_id ORDER BY timestamp DESC
+                LIMIT :amount """,
+                               {"microcontroller_id": microcontroller_id, "amount": amount})
+                records = self.c.fetchall()
+                values = [r[0] for r in records]
+                labels = [r[1].split(" ")[1] for r in records]
+                return {"values": values, "labels": labels}
+        except sql.IntegrityError as e:
+            print(e)
+
+    def select_humidity_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 10) -> {List[float], List[str]}:
+        try:
+            with self.conn:
+                self.c.execute("""SELECT humidity, timestamp FROM Data WHERE Microcontroller_id = :microcontroller_id ORDER BY timestamp DESC
+                LIMIT :amount """,
+                               {"microcontroller_id": microcontroller_id, "amount": amount})
+                records = self.c.fetchall()
+                values = [r[0] for r in records]
+                labels = [r[1].split(" ")[1] for r in records]
+                return {"values": values, "labels": labels}
+        except sql.IntegrityError as e:
+            print(e)
+
+    def select_heat_index_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 10) -> {List[float], List[str]}:
+        try:
+            with self.conn:
+                self.c.execute("""SELECT heat_index, timestamp FROM Data WHERE Microcontroller_id = :microcontroller_id ORDER BY timestamp DESC
+                LIMIT :amount """,
+                               {"microcontroller_id": microcontroller_id, "amount": amount})
+                records = self.c.fetchall()
+            values = [r[0] for r in records]
+            labels = [r[1].split(" ")[1] for r in records]
+            return {"values": values, "labels": labels}
+        except sql.IntegrityError as e:
+            print(e)
+
+    def select_ground_temperature_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 10) -> {List[float], List[str]}:
+        try:
+            with self.conn:
+                self.c.execute("""SELECT ground_temperature, timestamp FROM Data WHERE Microcontroller_id = :microcontroller_id ORDER BY timestamp DESC
+                LIMIT :amount """,
+                               {"microcontroller_id": microcontroller_id, "amount": amount})
+                records = self.c.fetchall()
+                values = [r[0] for r in records]
+                labels = [r[1].split(" ")[1] for r in records]
+                return {"values": values, "labels": labels}
+        except sql.IntegrityError as e:
+            print(e)
+
+    def select_ground_moisture_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 10) -> {List[float], List[str]}:
+        try:
+            with self.conn:
+                self.c.execute("""SELECT ground_moisture, timestamp FROM Data WHERE Microcontroller_id = :microcontroller_id ORDER BY timestamp DESC
+                LIMIT :amount """,
+                               {"microcontroller_id": microcontroller_id, "amount": amount})
+                records = self.c.fetchall()
+                values = [r[0] for r in records]
+                labels = [r[1].split(" ")[1] for r in records]
+                return {"values": values, "labels": labels}
         except sql.IntegrityError as e:
             print(e)
 
@@ -163,7 +244,7 @@ class SqliteManager:
                 self.c.execute("""SELECT * FROM Data WHERE Microcontroller_id = :microcontroller_id""",
                                {"microcontroller_id": microcontroller_id})
                 records = self.c.fetchall()
-                return [Data(r[1], r[2], r[3], r[4], r[5], r[7], r[8], r[0], r[6]) for r in records]
+                return [Data(r[1], r[2], r[3], r[4], r[5], r[6], r[8], r[9], r[0], r[7]) for r in records]
         except sql.IntegrityError as e:
             print(e)
 
