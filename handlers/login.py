@@ -1,4 +1,4 @@
-from flask import render_template, request, Blueprint, url_for, flash
+from flask import url_for
 from flask_login import login_user, login_required, logout_user
 from werkzeug.utils import redirect
 from flask import render_template, request, Blueprint
@@ -6,7 +6,6 @@ from werkzeug.security import check_password_hash
 
 from databasemanager.sqlitemanager import SqliteManager
 from models.loginform import LoginForm
-from models.user import User
 
 
 def construct_blueprint():

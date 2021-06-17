@@ -1,15 +1,10 @@
-import hashlib
-from flask import render_template, request, Blueprint, url_for, flash
+from flask import render_template, request, Blueprint, url_for
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import redirect
 
 from databasemanager.sqlitemanager import SqliteManager
 from models.form import SignupForm
 from models.user import User
-
-
-def check_password(hashed_password, user_password):
-    return hashed_password == hashlib.md5(user_password.encode()).hexdigest()
 
 
 def construct_blueprint():
@@ -33,7 +28,7 @@ def construct_blueprint():
                 manager.add_user(User(name, email, hashed_password))
                 return redirect(url_for('login.display'))
             else:
-                error = 'E-mail is used'
+                error = 'E-mail already Exists'
         return render_template('createuser.html', form=form, error=error)
 
     return createuser

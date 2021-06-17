@@ -11,7 +11,7 @@ class SqliteManager:
     def __init__(self, database_name: str = "GCMCS.db", database_location: str = "database/") -> None:
         self.database_name = database_name
         self.database_location = database_location
-        # TODO make it so it will create database file.
+        # TODO make it so it will create database directory.
         self.conn = sql.connect(self.database_location + self.database_name)
         self.c = self.conn.cursor()
         self.__init_database()
@@ -135,7 +135,6 @@ class SqliteManager:
                 self.c.execute("""SELECT * FROM Microcontroller WHERE user_id = :microcontroller_user_id""",
                                {"microcontroller_user_id": microcontroller_user_id})
                 records = self.c.fetchall()
-                print(records)
                 return [Microcontroller(r[1], r[2], r[0]) for r in records]
         except sql.IntegrityError as e:
             print(e)
@@ -174,7 +173,7 @@ class SqliteManager:
         except sql.IntegrityError as e:
             print(e)
 
-    def select_light_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 10) -> {List[float], List[str]}:
+    def select_light_data_by_microcontroller_id(self, microcontroller_id: int, amount: int = 10) -> {List[int], List[str]}:
         try:
             with self.conn:
                 self.c.execute("""SELECT light, timestamp FROM Data WHERE Microcontroller_id = :microcontroller_id ORDER BY timestamp DESC
