@@ -1,39 +1,23 @@
-
-{% extends 'default/master.html' %} {% block head %} <link href="/static/css/login.css" rel="stylesheet" type="text/css" />
-{% endblock %} {% block content %}
-
-
-{% from "shared/_formhelpers.html" import render_field %}
-    <div class="login">
-
-
-
-  <div class="form-input-material">
-<h1>Login</h1>
-    <form method=post action="/login" class="login-form">
-        <dl>
-            <div class="form-input-material">
-            {{ render_field(form.email)}}
-            </div>
-            <div class="form-input-material">
-            {{ render_field(form.password)}}
-            </div>
-             {% if error %}
-            <p class=errors><strong> {{ error }}</strong></p>
-            {% endif %}
-
-        </dl>
-
-        <input type=submit value=Login>
-
-    </form>
-
+{% extends 'default/master.html' %} {% block head %}
+<link href="/static/css/form.css" rel="stylesheet" type="text/css" />
+{% endblock %} {% block content %} {% from "shared/_formhelpers.html" import
+render_field %}
+<div class="login">
+  <form method="post" action="/login" class="login-form">
+    <h1>Login</h1>
+    <dl>
+      <div class="form-input-material">{{ render_field(form.email)}}</div>
+      <div class="form-input-material">{{ render_field(form.password)}}</div>
+    </dl>
+    {% if error %}
+    <p class="errors"><strong> {{ error }}</strong></p>
+    {% endif %}
+    <input class="btn" type="submit" value="Login" />
     <div class="help-text">
-        <p>Don't have an account? <a href="/createuser">Sign up</a></p>
-        <p><a href="">Forget your password?</a></p>
+      <p>Don't have an account? <a href="/createuser">Sign up</a></p>
+      <p><a href="">Forget your password?</a></p>
     </div>
+  </form>
 </div>
-    </div>
-
 
 {% endblock %}
