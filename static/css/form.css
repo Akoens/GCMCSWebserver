@@ -36,8 +36,7 @@
   display: flex;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
-  color: inherit;
-  font-family: inherit;
+  color: black;
   padding: 0.8em 0 10px 0.8em;
   border: 1px solid var(--gray-400);
   border-radius: 2px;

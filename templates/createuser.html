@@ -12,6 +12,9 @@
       <h2>Sign up</h2>
 
       <dl>
+        <div class="form-input-material">
+          {{ render_field(form.name) }}
+        </div>
         <div class="form-input-material">{{ render_field(form.email) }}</div>
 
         <div class="form-input-material">{{ render_field(form.password) }}</div>

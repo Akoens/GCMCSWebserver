@@ -19,7 +19,7 @@ def construct_blueprint():
         # Submit form get handled here
         if request.method == 'POST' and form.validate():
             name = request.form['name']
-            email = request.form['email']
+            email = request.form['email'].lower()
             password = request.form['password']
             hashed_password = generate_password_hash(password)
             # Check if user already exist

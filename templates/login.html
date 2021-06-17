@@ -8,10 +8,10 @@ render_field %}
     <dl>
       <div class="form-input-material">{{ render_field(form.email)}}</div>
       <div class="form-input-material">{{ render_field(form.password)}}</div>
+      {% if error %}
+      <p class="errors"><strong> {{ error }}</strong></p>
+      {% endif %}
     </dl>
-    {% if error %}
-    <p class="errors"><strong> {{ error }}</strong></p>
-    {% endif %}
     <input class="btn" type="submit" value="Login" />
     <div class="help-text">
       <p>Don't have an account? <a href="/createuser">Sign up</a></p>

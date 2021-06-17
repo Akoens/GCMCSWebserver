@@ -18,7 +18,7 @@ def construct_blueprint():
         error = None
 
         if request.method == 'POST' and form.validate():
-            email = request.form['email']
+            email = request.form['email'].lower()
             password = request.form['password']
             user = manager.user_exists_by_email(email)
 
