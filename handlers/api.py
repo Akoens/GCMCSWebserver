@@ -38,7 +38,6 @@ def construct_blueprint():
 
     @api.route('/api/receive', methods=['POST'])
     def receive_data():
-        random_stuff()
         if request.method == 'POST':
             manager = SqliteManager()
             data = manager.select_data_by_microcontroller_id(1)[0].serialize()
